@@ -1,5 +1,7 @@
-import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+/* eslint-disable func-names */
+/* eslint-disable no-underscore-dangle */
+import { Response } from 'miragejs';
+import { formatDate, requiresAuth } from '../utils/authUtils';
 
 /**
  * All the routes related to Wishlist are present here.
@@ -19,8 +21,8 @@ export const getWishlistItemsHandler = function (schema, request) {
       404,
       {},
       {
-        errors: ["The email you entered is not Registered. Not Found error"],
-      }
+        errors: ['The email you entered is not Registered. Not Found error'],
+      },
     );
   }
   const userWishlist = schema.users.findBy({ _id: userId }).wishlist;
@@ -41,8 +43,8 @@ export const addItemToWishlistHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
-        }
+          errors: ['The email you entered is not Registered. Not Found error'],
+        },
       );
     }
     const userWishlist = schema.users.findBy({ _id: userId }).wishlist;
@@ -60,7 +62,7 @@ export const addItemToWishlistHandler = function (schema, request) {
       {},
       {
         error,
-      }
+      },
     );
   }
 };
@@ -79,12 +81,12 @@ export const removeItemFromWishlistHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
-        }
+          errors: ['The email you entered is not Registered. Not Found error'],
+        },
       );
     }
     let userWishlist = schema.users.findBy({ _id: userId }).wishlist;
-    const productId = request.params.productId;
+    const { productId } = request.params;
     userWishlist = userWishlist.filter((item) => item._id !== productId);
     this.db.users.update({ _id: userId }, { wishlist: userWishlist });
     return new Response(200, {}, { wishlist: userWishlist });
@@ -94,7 +96,7 @@ export const removeItemFromWishlistHandler = function (schema, request) {
       {},
       {
         error,
-      }
+      },
     );
   }
 };

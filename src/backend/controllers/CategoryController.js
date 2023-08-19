@@ -1,4 +1,5 @@
-import { Response } from "miragejs";
+/* eslint-disable func-names */
+import { Response } from 'miragejs';
 
 /**
  * All the routes related to Category are present here.
@@ -19,7 +20,7 @@ export const getAllCategoriesHandler = function () {
       {},
       {
         error,
-      }
+      },
     );
   }
 };
@@ -30,7 +31,7 @@ export const getAllCategoriesHandler = function () {
  * */
 
 export const getCategoryHandler = function (schema, request) {
-  const categoryId = request.params.categoryId;
+  const { categoryId } = request.params;
   try {
     const category = schema.categories.findBy({ _id: categoryId });
     return new Response(200, {}, { category });
@@ -40,7 +41,7 @@ export const getCategoryHandler = function (schema, request) {
       {},
       {
         error,
-      }
+      },
     );
   }
 };
