@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/prop-types */
@@ -56,14 +57,17 @@ function AuthContextProvider({ children }) {
       const response = await loginService(email, password);
       if (response.status === 200 || response.status === 201) {
         const { encodedToken, foundUser } = response.data;
+        console.log(encodedToken);
         localStorage.setItem('token', encodedToken);
         localStorage.setItem('userInfo', JSON.stringify(foundUser));
         setToken(encodedToken);
         setUserInfo(foundUser);
+        console.log(foundUser);
         // notify("success", "Logged In Successfully!!");
       }
     } catch (error) {
       console.log(error);
+      console.log(error?.response?.data?.errors);
       // notify(
       //   "error",
       //   error?.response?.data?.errors
