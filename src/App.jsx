@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
 import './custom.styles.css';
-import Navbar from './components/navbar/navbar';
+import { Index as Route } from './routes';
 
 function App() {
   return (
     <div>
-      <h1>hhh</h1>
-      <Navbar />
+      <Route />
     </div>
   );
 }
